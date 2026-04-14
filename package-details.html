@@ -3,358 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Package Details | CBT</title>
-
-  <!-- SEO & Social Meta Tags (Fix #7) -->
-  <meta name="description" content="Explore authentic community-based tourism packages curated by trusted local partners." />
-  <meta property="og:title" content="Package Details | CBT" />
-  <meta property="og:description" content="Explore authentic community-based tourism packages curated by trusted local partners." />
-  <meta property="og:type" content="website" />
+  <title>Experience Details | CBT</title>
 
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/home.css" />
 
   <style>
-    /* ─── Fix #1: Navbar override — prevent overlap on non-hero pages ───────── */
     .navbar {
       position: relative;
       background: #0f172a;
       padding: 18px 0;
     }
 
-    /* ─── Fix #2: btn-outline visible on dark navbar background ─────────────── */
-    .navbar .logo {
-      color: #ffffff;
+    .package-page {
+      background: #f8fafc;
+      padding: 32px 0 64px;
     }
 
-    .navbar .nav-menu a {
-      color: rgba(255, 255, 255, 0.88);
+    .container-custom {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
     }
 
-    .navbar .btn-outline {
-      border-color: rgba(255, 255, 255, 0.7);
-      color: #ffffff;
+    /* HERO */
+    .hero-image {
+      width: 100%;
+      height: 480px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 24px;
     }
 
-    .navbar .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* ─── Page layout ────────────────────────────────────────────────────────── */
-    .package-details-page {
-      background: #f7f8fa;
-      min-height: 100vh;
-      padding: 40px 0 72px;
-    }
-
-    .package-details-shell {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    #packageDetailsContainer {
-      min-height: 240px;
-    }
-
-    .details-loading,
-    .details-error {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 24px;
-      padding: 24px;
-      color: #334155;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-    }
-
-    /* ─── Fix #3: All package layout styles moved here from JS ──────────────── */
-    .package-detail-layout {
-      display: grid;
-      gap: 28px;
-    }
-
-    .package-intro {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 36px;
-      align-items: end;
-      padding: 6px 0 22px;
-      border-bottom: 1px solid #d4d4d8;
-    }
-
-    .package-mini-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+    .title {
+      font-size: 2.8rem;
       font-weight: 700;
-      color: #64748b;
-      margin-bottom: 16px;
-    }
-
-    .package-main-title {
-      margin: 0;
-      font-size: clamp(3rem, 6vw, 5.6rem);
-      line-height: 0.96;
-      font-weight: 500;
-      letter-spacing: -0.05em;
       color: #0f172a;
-      max-width: 820px;
-      word-break: break-word;
+      margin-bottom: 10px;
     }
 
-    .package-intro-text {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.75;
+    .meta {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    /* GRID */
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+
+    /* EXPERIENCE */
+    .section {
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .section h2 {
+      margin-bottom: 14px;
+      color: #0f172a;
+    }
+
+    .section p {
+      line-height: 1.8;
       color: #334155;
-      max-width: 520px;
     }
 
-    .package-intro-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 22px;
-      align-items: center;
+    /* BOOKING CARD */
+    .booking-card {
+      position: sticky;
+      top: 100px;
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     }
 
-    .package-intro-actions .btn {
-      text-decoration: none;
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
-    /* ─── Fix: "More Packages" btn-outline visible on light background ──────── */
-    .package-intro-actions .btn-outline {
-      border: 2px solid #0f766e;
-      color: #0f766e;
-      background: transparent;
-    }
-
-    .package-intro-actions .btn-outline:hover {
+    .book-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
       background: #0f766e;
-      color: #ffffff;
-    }
-
-    /* ─── Fix: "← Back" styled as a proper pill button ──────────────────────── */
-    .package-back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 2px solid #d1d5db;
-      background: #ffffff;
-      color: #475569;
-      font-size: 0.9rem;
+      color: #fff;
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      padding: 10px 18px;
-      border-radius: 8px;
-      transition: 0.2s ease;
+      margin-top: 16px;
     }
 
-    .package-back-link:hover {
-      border-color: #0f172a;
-      color: #0f172a;
-      background: #f1f5f9;
+    .book-btn:hover {
+      background: #0d5c57;
     }
 
-    .package-hero-image-section {
-      width: 100%;
-      border-radius: 28px;
-      overflow: hidden;
-      background: #e5e7eb;
-      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+    .info-line {
+      margin: 8px 0;
+      color: #475569;
     }
 
-    .package-hero-image {
-      width: 100%;
-      height: 620px;
-      object-fit: cover;
-      display: block;
+    /* BACK */
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #0f766e;
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    .package-info-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .package-info-card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 22px;
-      padding: 22px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-    }
-
-    .package-info-label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: #64748b;
-    }
-
-    .package-info-value {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #0f172a;
-      line-height: 1.4;
-    }
-
-    .package-story-section {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 36px;
-      align-items: start;
-      padding-top: 12px;
-    }
-
-    .package-story-header h2 {
-      margin: 0 0 12px;
-      font-size: clamp(2.2rem, 4vw, 4rem);
-      line-height: 0.98;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-      color: #0f172a;
-    }
-
-    .package-story-header p {
-      margin: 0;
-      color: #64748b;
-      line-height: 1.75;
-      max-width: 440px;
-    }
-
-    .package-story-content {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 24px;
-      padding: 26px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
-    }
-
-    /* Fix #5: Paragraph styles for formatParagraphs output */
-    .package-story-content p {
-      margin: 0 0 1em;
-      color: #334155;
-      font-size: 1rem;
-      line-height: 1.95;
-    }
-
-    .package-story-content p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ─── Responsive ─────────────────────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .package-intro {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-
-      .package-story-section {
-        grid-template-columns: 1fr;
-        gap: 22px;
-      }
-
-      .package-info-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .package-hero-image {
-        height: 520px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .package-details-page {
-        padding: 20px 0 56px;
-      }
-
-      .package-details-shell {
-        padding: 0 16px;
-      }
-
-      .package-main-title {
-        font-size: 2.8rem;
-      }
-
-      .package-hero-image {
-        height: 380px;
-      }
-
-      .package-info-grid {
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .layout {
         grid-template-columns: 1fr;
       }
 
-      .package-info-card,
-      .package-story-content {
-        padding: 18px;
-      }
-
-      .package-intro-actions {
-        flex-direction: column;
-        align-items: flex-start;
+      .booking-card {
+        position: relative;
+        top: auto;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="container nav-wrapper">
-      <div class="logo">CBT</div>
+<header class="navbar">
+  <div class="container nav-wrapper">
+    <div class="logo">CBT</div>
 
-      <nav class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="destinations.html">Destinations</a>
-        <a href="packages.html">Packages</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="packages.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-outline">Login</a>
-        <a href="register.html" class="btn btn-primary">Join as Partner</a>
-      </div>
+<section class="package-page">
+  <div class="container-custom">
+
+    <a href="packages.html" class="back-btn">← Back to Packages</a>
+
+    <div id="packageDetailsContainer">
+      <!-- JS will inject content -->
     </div>
-  </header>
 
-  <!-- Package Details Content -->
-  <section class="package-details-page">
-    <div class="package-details-shell">
-      <div id="packageDetailsContainer">
-        <div class="details-loading">Loading package...</div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Fix #6: Footer added (missing from original) -->
-  <footer class="footer">
-    <div class="container footer-wrapper">
-      <div>
-        <h3>Community Based Tourism</h3>
-        <p>Connecting travelers with authentic community-driven tourism experiences.</p>
-      </div>
+<script type="module" src="js/pages/packageDetails.js"></script>
 
-      <div>
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="destinations.html">Destinations</a>
-        <a href="packages.html">Packages</a>
-        <a href="contact.html">Contact</a>
-      </div>
-
-      <div>
-        <h4>For Partners</h4>
-        <a href="register.html">Join as Partner</a>
-        <a href="login.html">Login</a>
-      </div>
-    </div>
-  </footer>
-
-  <script type="module" src="js/pages/packageDetails.js"></script>
 </body>
 </html>
