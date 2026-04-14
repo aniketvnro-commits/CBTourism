@@ -509,4 +509,32 @@
     width: 46px;
     height: 46px;
   }
+
+  .vendor-package-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+}
+
+.vendor-package-card img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.vendor-package-body {
+  flex: 1;
+}
+
+.vendor-package-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+  
 }
