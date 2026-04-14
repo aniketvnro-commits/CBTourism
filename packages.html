@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Packages | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <style>
+    .packages-page {
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .packages-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.55)),
+        url("assets/images/discover.jpg") center/cover no-repeat;
+      color: #fff;
+      padding: 88px 0 150px;
+    }
+
+    .packages-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.28));
+      pointer-events: none;
+    }
+
+    .packages-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .packages-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .packages-title {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .packages-subtitle {
+      margin: 18px 0 0;
+      max-width: 680px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .packages-toolbar-wrap {
+      margin-top: -72px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .packages-toolbar {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .toolbar-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .toolbar-field input,
+    .toolbar-field select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 0.98rem;
+      color: #0f172a;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .toolbar-field input:focus,
+    .toolbar-field select:focus {
+      border-color: #0f8b8d;
+      box-shadow: 0 0 0 3px rgba(15, 139, 141, 0.10);
+    }
+
+    .toolbar-action {
+      display: flex;
+      align-items: end;
+      height: 100%;
+    }
+
+    .toolbar-action .btn {
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .packages-section {
+      padding: 40px 0 72px;
+    }
+
+    .packages-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .packages-section-header h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: #0f172a;
+    }
+
+    .packages-section-header p {
+      margin: 8px 0 0;
+      color: #64748b;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .packages-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .packages-note {
+      margin-top: 28px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      line-height: 1.7;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    @media (max-width: 992px) {
+      .packages-toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .toolbar-action {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .packages-hero {
+        padding: 72px 0 120px;
+      }
+
+      .packages-toolbar-wrap {
+        margin-top: -44px;
+      }
+
+      .packages-toolbar {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .toolbar-action {
+        grid-column: span 1;
+      }
+
+      .packages-section {
+        padding: 36px 0 56px;
+      }
+
+      .packages-section-header h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body class="packages-page">
+
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">CBT</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Join as Partner</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="packages-hero">
+    <div class="container">
+      <div class="packages-hero-inner">
+        <span class="packages-tag">Community Based Tourism</span>
+        <h1 class="packages-title">Discover Handpicked Travel Packages</h1>
+        <p class="packages-subtitle">
+          Explore locally curated tourism experiences, authentic stays, cultural trails,
+          and community-driven journeys designed to create meaningful travel memories.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="packages-toolbar-wrap">
+    <div class="container" id="activeFilterBar" style="margin-top:10px;"></div>
+    <div class="container">
+      <div class="packages-toolbar">
+        <div class="toolbar-field">
+          <label for="searchKeyword">Search Package</label>
+          <input type="text" id="searchKeyword" placeholder="Search by package name or destination" />
+        </div>
+
+        <div class="toolbar-field">
+          <label for="locationFilter">Location</label>
+          <select id="locationFilter">
+            <option value="">All Locations</option>
+          </select>
+        </div>
+
+        <div class="toolbar-field">
+          <label for="sortPackages">Sort By</label>
+          <select id="sortPackages">
+            <option value="latest">Latest</option>
+            <option value="priceLow">Price: Low to High</option>
+            <option value="priceHigh">Price: High to Low</option>
+          </select>
+        </div>
+
+        <div class="toolbar-action">
+          <a href="contact.html" class="btn btn-primary">Need Help?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="packages-section">
+    <div class="container">
+      <div class="packages-section-header">
+        <div>
+          <h2>Available Packages</h2>
+          <p>
+            Browse travel packages from verified community tourism partners. Click on any
+            package to view details and continue to inquiry or future booking.
+          </p>
+        </div>
+
+        <div class="packages-summary">
+          Curated by local partners
+        </div>
+      </div>
+
+      <div id="packagesGrid" class="package-grid"></div>
+
+      <div class="packages-note">
+        Looking for direct booking, availability calendar, filters, or instant confirmation?
+        These layers can be expanded next as the booking system evolves.
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/packages.js"></script>
+</body>
+</html>

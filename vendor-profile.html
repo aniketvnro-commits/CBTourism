@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendor Profile | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .vendor-profile-page {
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 40px 0 64px;
+    }
+
+    .vendor-profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .vendor-profile-header h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      color: #0f172a;
+    }
+
+    .vendor-profile-header p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .vendor-profile-layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .vendor-profile-card,
+    .vendor-profile-info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .vendor-profile-card {
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .vendor-profile-avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #0f766e, #0ea5a4);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin: 0 auto 18px;
+      box-shadow: 0 12px 24px rgba(15, 118, 110, 0.25);
+    }
+
+    .vendor-profile-name {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      color: #0f172a;
+    }
+
+    .vendor-profile-role {
+      margin: 0 0 18px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .vendor-profile-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .vendor-profile-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #ecfeff;
+      color: #0f766e;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid #ccfbf1;
+    }
+
+    .vendor-profile-side-meta {
+      display: grid;
+      gap: 12px;
+      text-align: left;
+      margin-top: 18px;
+    }
+
+    .vendor-profile-side-meta .meta-row {
+      padding: 12px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #f8fafc;
+    }
+
+    .vendor-profile-side-meta .meta-label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .vendor-profile-side-meta .meta-value {
+      color: #0f172a;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .vendor-profile-info-card {
+      padding: 26px 24px;
+    }
+
+    .vendor-profile-section + .vendor-profile-section {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .vendor-profile-section h3 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      color: #0f172a;
+    }
+
+    .vendor-profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .vendor-profile-field {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+
+    .vendor-profile-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .vendor-profile-field .field-label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .vendor-profile-field .field-value {
+      color: #0f172a;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    #vendorProfileMessage {
+      margin-bottom: 16px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .vendor-profile-empty {
+      padding: 22px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 16px;
+      background: #ffffff;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .vendor-profile-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .vendor-profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vendor-profile-header {
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body class="vendor-body">
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+        <a href="vendor-profile.html" class="active">Profile</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="vendor-profile-page">
+    <div class="container">
+      <div class="vendor-profile-header">
+        <div>
+          <h2>Vendor Profile</h2>
+          <p>
+            Review your business information exactly as it belongs to your vendor account.
+            This profile is loaded from your own Firebase record after login.
+          </p>
+        </div>
+
+        <div>
+          <a href="vendor-profile-edit.html" class="btn btn-primary">Edit Profile</a>
+        </div>
+      </div>
+
+      <p id="vendorProfileMessage">Loading your profile...</p>
+
+      <div id="vendorProfileContent"></div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/vendorProfile.js"></script>
+</body>
+</html>

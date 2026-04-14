@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking Request | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <style>
+    .booking-page {
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .booking-hero {
+      position: relative;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.58)),
+        url("assets/images/kerala-bg.jpg") center/cover no-repeat;
+      color: #fff;
+      padding: 84px 0 72px;
+      overflow: hidden;
+    }
+
+    .booking-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.28));
+      pointer-events: none;
+    }
+
+    .booking-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .booking-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .booking-title {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      line-height: 1.03;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .booking-subtitle {
+      margin: 18px 0 0;
+      max-width: 680px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .booking-main {
+      padding: 42px 0 72px;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.4fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .booking-card,
+    .booking-form-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+    }
+
+    .booking-card {
+      overflow: hidden;
+    }
+
+    .booking-package-image-wrap {
+      height: 240px;
+      background: #e2e8f0;
+    }
+
+    .booking-package-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .booking-package-content {
+      padding: 22px;
+    }
+
+    .booking-package-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #e6fffb;
+      color: #0f766e;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .booking-package-title {
+      margin: 0;
+      font-size: 1.7rem;
+      color: #0f172a;
+      line-height: 1.12;
+    }
+
+    .booking-package-desc {
+      margin: 12px 0 0;
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    .booking-package-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .booking-meta-item {
+      padding: 15px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+    }
+
+    .booking-meta-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    .booking-meta-value {
+      display: block;
+      color: #0f172a;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .booking-support-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border: 1px solid #e2e8f0;
+    }
+
+    .booking-support-box h3 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      color: #0f172a;
+    }
+
+    .booking-support-box p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    .booking-form-card {
+      padding: 28px;
+    }
+
+    .booking-form-card h2 {
+      margin: 0 0 10px;
+      color: #0f172a;
+      font-size: 1.65rem;
+    }
+
+    .booking-form-card p {
+      margin: 0;
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    .booking-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: 0.02em;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 0.98rem;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #0f8b8d;
+      box-shadow: 0 0 0 3px rgba(15, 139, 141, 0.10);
+    }
+
+    .booking-readonly {
+      background: #f8fafc !important;
+      color: #475569;
+    }
+
+    .booking-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .booking-actions .btn {
+      text-decoration: none;
+    }
+
+    .booking-note {
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .booking-message {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      display: none;
+      font-weight: 600;
+    }
+
+    .booking-message.success {
+      display: block;
+      background: #ecfdf5;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .booking-message.error {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    @media (max-width: 992px) {
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .booking-hero {
+        padding: 70px 0 58px;
+      }
+
+      .booking-main {
+        padding: 34px 0 56px;
+      }
+
+      .booking-form-card {
+        padding: 20px;
+      }
+
+      .booking-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-package-content {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body class="booking-page">
+
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">CBT</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Join as Partner</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="booking-hero">
+    <div class="container">
+      <div class="booking-hero-inner">
+        <span class="booking-tag">Booking Request</span>
+        <h1 class="booking-title">Start Your Travel Booking</h1>
+        <p class="booking-subtitle">
+          Share your travel details and booking requirements. We’ll use your request to connect you
+          with the right package and support you through the next step of the journey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-main">
+    <div class="container">
+      <div class="booking-layout">
+
+        <div class="booking-card">
+          <div class="booking-package-image-wrap">
+            <img
+              id="bookingPackageImage"
+              class="booking-package-image"
+              src="assets/images/kerala-bg.jpg"
+              alt="Selected Package"
+            />
+          </div>
+
+          <div class="booking-package-content">
+            <span class="booking-package-label">Selected Package</span>
+            <h2 id="bookingPackageTitle" class="booking-package-title">Travel Package</h2>
+            <p id="bookingPackageDescription" class="booking-package-desc">
+              Your selected package summary will appear here.
+            </p>
+
+            <div class="booking-package-meta">
+              <div class="booking-meta-item">
+                <span class="booking-meta-label">Location</span>
+                <span id="bookingPackageLocation" class="booking-meta-value">—</span>
+              </div>
+
+              <div class="booking-meta-item">
+                <span class="booking-meta-label">Duration</span>
+                <span id="bookingPackageDuration" class="booking-meta-value">—</span>
+              </div>
+
+              <div class="booking-meta-item">
+                <span class="booking-meta-label">Package Price</span>
+                <span id="bookingPackagePrice" class="booking-meta-value">—</span>
+              </div>
+            </div>
+
+            <div class="booking-support-box">
+              <h3>How this works</h3>
+              <p>
+                Submit your request with preferred dates, guests, and requirements. This stage captures
+                your booking intent. Final availability, confirmation, and payment will be handled in the next step.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form-card">
+          <h2>Booking Request Form</h2>
+          <p>
+            Fill in your details below. We’ll record your request and use it as the basis for package
+            inquiry, availability discussion, and next-step coordination.
+          </p>
+
+          <form id="bookingRequestForm">
+            <div class="booking-form-grid">
+              <div class="form-field">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" required />
+              </div>
+
+              <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required />
+              </div>
+
+              <div class="form-field">
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" min="1" placeholder="e.g. 2" />
+              </div>
+
+              <div class="form-field">
+                <label for="travelDate">Preferred Travel Date</label>
+                <input type="date" id="travelDate" />
+              </div>
+
+              <div class="form-field">
+                <label for="budget">Budget Range</label>
+                <select id="budget">
+                  <option value="">Select budget</option>
+                  <option value="Below ₹5,000">Below ₹5,000</option>
+                  <option value="₹5,000 - ₹10,000">₹5,000 - ₹10,000</option>
+                  <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                  <option value="₹25,000+">₹25,000+</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="packageName">Selected Package</label>
+                <input type="text" id="packageName" class="booking-readonly" readonly />
+              </div>
+
+              <div class="form-field">
+                <label for="location">Location</label>
+                <input type="text" id="location" class="booking-readonly" readonly />
+              </div>
+
+              <div class="form-field">
+                <label for="price">Quoted Price</label>
+                <input type="text" id="price" class="booking-readonly" readonly />
+              </div>
+
+              <div class="form-field full">
+                <label for="message">Special Requirements</label>
+                <textarea id="message" placeholder="Share your preferred dates, group type, stay preferences, transport needs, or any custom request."></textarea>
+              </div>
+            </div>
+
+            <div class="booking-actions">
+              <button type="submit" class="btn btn-primary" id="submitBookingBtn">Send Booking Request</button>
+              <a href="packages.html" class="btn btn-outline">Browse More Packages</a>
+            </div>
+
+            <p class="booking-note">
+              This is currently a booking request workflow. Final confirmation and payment gateway integration will be added in the next phase.
+            </p>
+
+            <div id="bookingFormMessage" class="booking-message"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/booking.js"></script>
+</body>
+</html>

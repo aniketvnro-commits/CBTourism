@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Requests | CBT Vendor</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .vendor-requests-section {
+      padding: 48px 0 64px;
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .vendor-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .vendor-page-header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: #0f172a;
+    }
+
+    .vendor-page-header p {
+      margin: 6px 0 0;
+      color: #64748b;
+    }
+
+    #bookingRequestsMessage {
+      margin-bottom: 18px;
+      color: #444;
+      font-weight: 500;
+    }
+
+    .booking-request-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .booking-request-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e2e8f0;
+    }
+
+    .booking-request-image {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      background: #e2e8f0;
+    }
+
+    .booking-request-content {
+      padding: 18px;
+    }
+
+    .booking-request-content h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #0f172a;
+    }
+
+    .request-meta {
+      margin: 0 0 12px;
+      color: #64748b;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .request-block {
+      margin-top: 14px;
+      padding: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+    }
+
+    .request-block p {
+      margin: 0 0 8px;
+      color: #475569;
+      line-height: 1.65;
+    }
+
+    .request-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .request-status-row {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: #e8f7f5;
+      color: #0f8b8d;
+      text-transform: capitalize;
+    }
+
+    .status-select {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+    }
+
+    .small-btn {
+      padding: 10px 14px;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body class="vendor-body">
+    <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html">My Packages</a>
+        <a href="vendor-booking-requests.html" class="active">Booking Requests</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="vendor-requests-section">
+    <div class="container">
+      <div class="vendor-page-header">
+        <div>
+          <h1>Booking Requests</h1>
+          <p>Review and manage requests sent for your listed packages.</p>
+        </div>
+      </div>
+
+      <p id="bookingRequestsMessage"></p>
+      <div id="bookingRequestsList" class="booking-request-list"></div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/vendorBookingRequests.js"></script>
+</body>
+</html>

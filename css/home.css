@@ -1,0 +1,512 @@
+/* ─── Navbar ──────────────────────────────────────────────────────────────── */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 30;
+  padding: 24px 0;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-menu a {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.nav-menu a:hover {
+  opacity: 0.75;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ─── Hero base ───────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  background: #1f2937;
+}
+
+/* ─── Background: static image with Ken Burns ─────────────────────────────── */
+.hero-slider-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-slider-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #1f2937;
+
+  /* Ken Burns: slow continuous zoom — no jump between slides */
+  animation: kenBurns 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1.00); }
+  to   { transform: scale(1.07); }
+}
+
+/* ─── Overlay ─────────────────────────────────────────────────────────────── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.12)),
+    linear-gradient(to top,   rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.06));
+}
+
+/* ─── Hero content grid ───────────────────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* ─── Hero left ───────────────────────────────────────────────────────────── */
+.hero-left {
+  max-width: 680px;
+}
+
+.hero-tag {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #dbeafe;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.hero-left h1 {
+  font-family: 'Bebas Neue', Arial, sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.92;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+.hero-description {
+  max-width: 520px;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ─── Hero right / preview cards ─────────────────────────────────────────── */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-cards {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+}
+
+.preview-card {
+  width: 210px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  opacity: 1;
+  /* hover lift */
+  transition: transform 0.35s cubic-bezier(.22, 1, .36, 1),
+              box-shadow 0.35s ease;
+}
+
+.preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Staggered heights — same as your original */
+.preview-card:nth-child(1) {
+  height: 340px;
+  transform: translateY(-12px) scale(1.04);
+}
+
+.preview-card:nth-child(2) {
+  height: 285px;
+  transform: translateY(0px) scale(1);
+}
+
+.preview-card:nth-child(3) {
+  height: 255px;
+  transform: translateY(12px) scale(0.97);
+}
+
+/* Hover lifts each card independently */
+.preview-card:nth-child(1):hover {
+  transform: translateY(-20px) scale(1.06);
+  box-shadow: 0 36px 60px rgba(0, 0, 0, 0.38);
+}
+
+.preview-card:nth-child(2):hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 36px 60px rgba(0, 0, 0, 0.38);
+}
+
+.preview-card:nth-child(3):hover {
+  transform: translateY(4px) scale(0.99);
+  box-shadow: 0 36px 60px rgba(0, 0, 0, 0.38);
+}
+
+/* ─── Card entrance animation (triggered by JS adding .card-entering) ─────── */
+.preview-card.card-entering {
+  animation: cardEnter 0.6s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.preview-card:nth-child(1).card-entering { animation-delay: 0ms;   }
+.preview-card:nth-child(2).card-entering { animation-delay: 90ms;  }
+.preview-card:nth-child(3).card-entering { animation-delay: 180ms; }
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    /* restore each card's natural position via its nth-child rule */
+    transform: translateY(var(--card-rest-y, 0px)) scale(var(--card-rest-s, 1));
+  }
+}
+
+/* Give each card its rest state as CSS variables so the keyframe lands correctly */
+.preview-card:nth-child(1) { --card-rest-y: -12px; --card-rest-s: 1.04; }
+.preview-card:nth-child(2) { --card-rest-y:   0px; --card-rest-s: 1.00; }
+.preview-card:nth-child(3) { --card-rest-y:  12px; --card-rest-s: 0.97; }
+
+/* ─── Text entrance animations ────────────────────────────────────────────── */
+/* JS adds .text-entering to .hero-tag, h1, .hero-description, .hero-buttons */
+.text-entering {
+  animation: textEnter 0.55s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.hero-tag.text-entering      { animation-delay: 0ms;   }
+.hero-left h1.text-entering  { animation-delay: 80ms;  }
+.hero-description.text-entering { animation-delay: 160ms; }
+.hero-buttons.text-entering  { animation-delay: 230ms; }
+
+@keyframes textEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Progress bar (thin line at bottom of hero) ──────────────────────────── */
+.hero-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.70);
+  z-index: 50;
+  border-radius: 0 2px 2px 0;
+  transition: width 5s linear;
+}
+
+/* ─── Hero controls — your original layout ────────────────────────────────── */
+.hero-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hero-dots,
+.nav-arrow {
+  pointer-events: auto;
+}
+
+.nav-arrow {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.30);
+  transform: scale(1.08);
+}
+
+.nav-arrow:active {
+  transform: scale(0.96);
+}
+
+.hero-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: all 0.35s cubic-bezier(.22, 1, .36, 1);
+}
+
+.dot.active {
+  width: 34px;
+  background: #ffffff;
+}
+
+/* ─── Sections below hero ─────────────────────────────────────────────────── */
+.destination-grid,
+.package-grid,
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-card,
+.package-card,
+.feature-box {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.grid-card img,
+.package-card img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.grid-card-content,
+.package-content {
+  padding: 22px;
+}
+
+.grid-card-content h3,
+.package-content h3,
+.feature-box h3 {
+  margin-bottom: 10px;
+}
+
+.package-meta {
+  color: #0f766e;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.feature-box {
+  padding: 30px;
+}
+
+/* ─── Partner CTA ─────────────────────────────────────────────────────────── */
+.partner-cta .cta-box {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 42px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  background: #111827;
+  color: #ffffff;
+  padding: 60px 0;
+}
+
+.footer-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 30px;
+}
+
+.footer h3,
+.footer h4 {
+  margin-bottom: 14px;
+}
+
+.footer a {
+  display: block;
+  margin-bottom: 10px;
+  color: #d1d5db;
+}
+
+/* ─── Responsive: 1400px ──────────────────────────────────────────────────── */
+@media (max-width: 1400px) {
+  .preview-card           { width: 190px; }
+  .preview-card:nth-child(1) { height: 310px; }
+  .preview-card:nth-child(2) { height: 265px; }
+  .preview-card:nth-child(3) { height: 235px; }
+}
+
+/* ─── Responsive: 1200px ──────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .preview-card           { width: 165px; }
+  .preview-card:nth-child(1) { height: 270px; }
+  .preview-card:nth-child(2) { height: 230px; }
+  .preview-card:nth-child(3) { height: 205px; }
+}
+
+/* ─── Responsive: 992px ───────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .hero-content,
+  .destination-grid,
+  .package-grid,
+  .features-grid,
+  .footer-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-menu,
+  .nav-actions {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-content {
+    min-height: auto;
+    padding-top: 120px;
+    padding-bottom: 140px;
+    gap: 32px;
+  }
+
+  .hero-right {
+    justify-content: flex-start;
+  }
+
+  .preview-cards {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .preview-card {
+    min-width: 160px;
+  }
+
+  .partner-cta .cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-controls {
+    width: 90%;
+    bottom: 22px;
+  }
+}
+
+/* ─── Responsive: 576px ───────────────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .logo {
+    font-size: 1.6rem;
+  }
+
+  .hero-tag {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-left h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero-description {
+    font-size: 0.98rem;
+  }
+
+  .preview-card           { min-width: 140px; }
+  .preview-card:nth-child(1) { height: 230px; }
+  .preview-card:nth-child(2) { height: 205px; }
+  .preview-card:nth-child(3) { height: 185px; }
+
+  .nav-arrow {
+    width: 46px;
+    height: 46px;
+  }
+}

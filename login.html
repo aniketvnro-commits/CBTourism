@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - CBT</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <style>
+    body {
+      background: #f5f7fb;
+    }
+
+    .auth-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+      padding: 32px;
+    }
+
+    .auth-card h1 {
+      margin-bottom: 10px;
+    }
+
+    .auth-card p {
+      margin-bottom: 24px;
+      color: #555;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d0d7de;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    #formMessage {
+      margin-top: 16px;
+      font-weight: 600;
+      color: #0f766e;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h1>Partner Login</h1>
+      <p>Log in to manage your packages and inquiries.</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required />
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+
+      <p id="formMessage"></p>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/auth.js"></script>
+</body>
+</html>

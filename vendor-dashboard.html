@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendor Dashboard - CBT</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .vendor-dashboard-shell {
+      padding-bottom: 56px;
+    }
+
+    .vendor-hero {
+      background: linear-gradient(135deg, #0f8b8d 0%, #0b5f75 100%);
+      border-radius: 28px;
+      padding: 32px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 18px 40px rgba(15, 139, 141, 0.18);
+      margin-bottom: 28px;
+    }
+
+    .vendor-hero h2 {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.05;
+      color: #fff;
+    }
+
+    .vendor-hero p {
+      margin: 10px 0 0;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.7;
+    }
+
+    .vendor-hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .vendor-hero-actions .btn {
+      text-decoration: none;
+    }
+
+    .vendor-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .vendor-kpi-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .vendor-kpi-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+    }
+
+    .vendor-kpi-value {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .vendor-kpi-subtext {
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .vendor-quick-actions {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      margin-bottom: 28px;
+    }
+
+    .vendor-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .vendor-section-head h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #0f172a;
+    }
+
+    .vendor-section-head p {
+      margin: 8px 0 0;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    .vendor-action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .vendor-action-card {
+      display: block;
+      text-decoration: none;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 18px;
+      transition: all 0.22s ease;
+    }
+
+    .vendor-action-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+      background: #fff;
+    }
+
+    .vendor-action-card h4 {
+      margin: 0 0 8px;
+      color: #0f172a;
+      font-size: 1.05rem;
+    }
+
+    .vendor-action-card p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.65;
+      font-size: 0.94rem;
+    }
+
+    .vendor-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    .vendor-panel-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .vendor-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vendor-list-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      background: #f8fafc;
+    }
+
+    .vendor-list-thumb {
+      width: 78px;
+      height: 78px;
+      border-radius: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #e2e8f0;
+    }
+
+    .vendor-list-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .vendor-list-body h4 {
+      margin: 0 0 6px;
+      color: #0f172a;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .vendor-list-meta {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .vendor-status-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #e8f7f5;
+      color: #0f8b8d;
+      text-transform: capitalize;
+    }
+
+    .vendor-empty-state {
+      border: 1px dashed #cbd5e1;
+      border-radius: 18px;
+      padding: 18px;
+      color: #64748b;
+      background: #f8fafc;
+      line-height: 1.7;
+    }
+
+    .vendor-view-link {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f8b8d;
+      text-decoration: none;
+    }
+
+    .vendor-view-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1100px) {
+      .vendor-kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vendor-dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .vendor-hero {
+        padding: 22px;
+      }
+
+      .vendor-hero h2 {
+        font-size: 1.6rem;
+      }
+
+      .vendor-kpi-grid,
+      .vendor-action-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="vendor-body">
+
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html" class="active">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="vendor-page vendor-dashboard-shell">
+    <div class="container">
+
+      <section class="vendor-hero">
+        <div>
+          <h2>Welcome back to your dashboard</h2>
+          <p>
+            Track package performance, monitor new booking requests, and manage your travel listings
+            from one operational workspace.
+          </p>
+        </div>
+
+        <div class="vendor-hero-actions">
+          <a href="vendor-add-package.html" class="btn btn-primary">Add New Package</a>
+          <a href="vendor-booking-requests.html" class="btn btn-outline">View Requests</a>
+        </div>
+      </section>
+
+      <section class="vendor-kpi-grid">
+        <div class="vendor-kpi-card">
+          <span class="vendor-kpi-label">Total Packages</span>
+          <span class="vendor-kpi-value" id="totalPackagesValue">0</span>
+          <div class="vendor-kpi-subtext">All packages listed by your vendor account.</div>
+        </div>
+
+        <div class="vendor-kpi-card">
+          <span class="vendor-kpi-label">Active Packages</span>
+          <span class="vendor-kpi-value" id="activePackagesValue">0</span>
+          <div class="vendor-kpi-subtext">Packages currently visible to travelers.</div>
+        </div>
+
+        <div class="vendor-kpi-card">
+          <span class="vendor-kpi-label">Booking Requests</span>
+          <span class="vendor-kpi-value" id="totalRequestsValue">0</span>
+          <div class="vendor-kpi-subtext">All booking requests submitted for your packages.</div>
+        </div>
+
+        <div class="vendor-kpi-card">
+          <span class="vendor-kpi-label">New Requests</span>
+          <span class="vendor-kpi-value" id="newRequestsValue">0</span>
+          <div class="vendor-kpi-subtext">Requests that still need initial action.</div>
+        </div>
+      </section>
+
+      <section class="vendor-quick-actions">
+        <div class="vendor-section-head">
+          <div>
+            <h3>Quick Actions</h3>
+            <p>Move faster with the most-used vendor actions.</p>
+          </div>
+        </div>
+
+        <div class="vendor-action-grid">
+          <a href="vendor-add-package.html" class="vendor-action-card">
+            <h4>Add New Package</h4>
+            <p>Create a fresh listing with image, price, location, and experience details.</p>
+          </a>
+
+          <a href="vendor-packages.html" class="vendor-action-card">
+            <h4>Manage Packages</h4>
+            <p>Edit, review, and update your current listed travel packages.</p>
+          </a>
+
+          <a href="vendor-booking-requests.html" class="vendor-action-card">
+            <h4>Review Requests</h4>
+            <p>Track incoming booking requests and update their response status.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="vendor-dashboard-grid">
+        <div class="vendor-panel-card">
+          <div class="vendor-section-head">
+            <div>
+              <h3>Recent Booking Requests</h3>
+              <p>Latest traveler requests that need review or follow-up.</p>
+            </div>
+            <a href="vendor-booking-requests.html" class="vendor-view-link">View all</a>
+          </div>
+
+          <div id="recentRequestsList" class="vendor-list"></div>
+        </div>
+
+        <div class="vendor-panel-card">
+          <div class="vendor-section-head">
+            <div>
+              <h3>Recent Packages</h3>
+              <p>Your latest listings and their current visibility status.</p>
+            </div>
+            <a href="vendor-packages.html" class="vendor-view-link">View all</a>
+          </div>
+
+          <div id="recentPackagesList" class="vendor-list"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script type="module" src="js/pages/vendorDashboard.js"></script>
+</body>
+</html>

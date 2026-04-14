@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inquiries | CBT Admin</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .admin-page {
+      background: #f5f7fb;
+      min-height: 100vh;
+      padding: 36px 0 64px;
+    }
+
+    .admin-page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .admin-page-header h1 {
+      margin: 0 0 6px;
+      font-size: 1.9rem;
+      color: #0f172a;
+    }
+
+    .admin-page-header p {
+      margin: 0;
+      color: #64748b;
+    }
+
+    .admin-header-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 520px;
+      justify-content: flex-end;
+    }
+
+    .admin-search-bar,
+    .admin-filter-select {
+      padding: 11px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      background: #ffffff;
+      color: #0f172a;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .admin-search-bar {
+      flex: 1 1 280px;
+      min-width: 220px;
+    }
+
+    .admin-filter-select {
+      flex: 0 0 180px;
+    }
+
+    .admin-search-bar:focus,
+    .admin-filter-select:focus {
+      border-color: #0f766e;
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    }
+
+    .admin-summary {
+      margin-bottom: 20px;
+      color: #64748b;
+      font-size: 0.92rem;
+    }
+
+    .admin-inquiries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .admin-inquiry-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .admin-inquiry-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .admin-inquiry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .admin-inquiry-head h3 {
+      margin: 0 0 5px;
+      font-size: 1.05rem;
+      color: #0f172a;
+    }
+
+    .admin-inquiry-head p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+
+    .admin-inquiry-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      background: #ecfeff;
+      color: #0f766e;
+      border: 1px solid #ccfbf1;
+      text-transform: capitalize;
+    }
+
+    .admin-inquiry-details {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 14px 0;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .admin-inquiry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .admin-inquiry-row strong {
+      color: #334155;
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+
+    .admin-inquiry-message {
+      margin: 0 0 16px;
+      color: #334155;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .admin-inquiry-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .admin-action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .admin-action-link.email {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .admin-action-link.call {
+      background: #f8fafc;
+      color: #334155;
+    }
+
+    .admin-action-link:hover {
+      transform: translateY(-1px);
+    }
+
+    .admin-empty-state {
+      grid-column: 1 / -1;
+      background: #ffffff;
+      border: 1px dashed #cbd5e1;
+      border-radius: 20px;
+      padding: 48px 24px;
+      text-align: center;
+      color: #94a3b8;
+    }
+
+    .admin-empty-state p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .admin-header-actions {
+        width: 100%;
+        max-width: 100%;
+        justify-content: stretch;
+      }
+
+      .admin-search-bar,
+      .admin-filter-select {
+        width: 100%;
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body class="vendor-body">
+
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="admin-vendors.html">Vendors</a>
+        <a href="admin-packages.html">Packages</a>
+        <a href="admin-inquiries.html" class="active">Inquiries</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline logout-btn">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="admin-page">
+    <div class="container">
+      <div class="admin-page-header">
+        <div>
+          <h1>Traveler Inquiries</h1>
+          <p>View all contact form inquiries submitted by travelers.</p>
+        </div>
+
+        <div class="admin-header-actions">
+          <input
+            type="text"
+            id="inquirySearch"
+            class="admin-search-bar"
+            placeholder="Search by name, email, subject, message..."
+          />
+
+          <select id="subjectFilter" class="admin-filter-select">
+            <option value="all">All Subjects</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="admin-summary" id="inquirySummary">Loading inquiries...</p>
+
+      <div class="admin-inquiries-grid" id="adminInquiriesGrid">
+        <div class="admin-empty-state"><p>Loading inquiries...</p></div>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/adminInquiries.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <style>
+    .destinations-page {
+      background: #f8fafc;
+      min-height: 100vh;
+      padding-bottom: 72px;
+    }
+
+    .destinations-hero {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.50), rgba(15, 23, 42, 0.58)),
+        url("assets/images/kerala-bg.jpg") center/cover no-repeat;
+      color: #fff;
+      padding: 80px 0 42px;
+    }
+
+    .destinations-hero-content {
+      max-width: 760px;
+    }
+
+    .destinations-hero .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .destinations-hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+    }
+
+    .destinations-hero p {
+      margin: 0;
+      max-width: 650px;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .destinations-shell {
+      margin-top: -34px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .destinations-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+      margin-bottom: 26px;
+    }
+
+    .destinations-toolbar-left h2 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+      color: #0f172a;
+    }
+
+    .destinations-toolbar-left p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .destinations-search {
+      min-width: min(100%, 320px);
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .destinations-search input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #0f172a;
+      box-sizing: border-box;
+      font: inherit;
+    }
+
+    #destinationsMessage {
+      margin: 0 0 18px;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .destination-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .destination-card-image-wrap {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: #e2e8f0;
+    }
+
+    .destination-card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .destination-card-count {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.82);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .destination-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    .destination-card-title {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #0f172a;
+    }
+
+    .destination-card-sub {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .destination-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    .destination-card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .destinations-empty {
+      background: #fff;
+      border: 1px dashed #cbd5e1;
+      border-radius: 22px;
+      padding: 28px;
+      color: #64748b;
+      line-height: 1.8;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    @media (max-width: 768px) {
+      .destinations-hero {
+        min-height: 280px;
+        padding: 68px 0 32px;
+      }
+
+      .destinations-toolbar {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CBT</div>
+        <div class="brand-copy">
+          <strong>Community Based Tourism</strong>
+          <span>Travel with local experiences</span>
+        </div>
+      </a>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="destinations.html" class="active">Destinations</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="destinations-page">
+    <section class="destinations-hero">
+      <div class="container">
+        <div class="destinations-hero-content">
+          <span class="eyebrow">Destination Marketplace</span>
+          <h1>Explore destinations through live package availability</h1>
+          <p>
+            Each destination below is generated from active vendor packages.
+            As more vendors add experiences in new locations, more destinations
+            automatically appear here.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="destinations-shell">
+      <div class="container">
+        <div class="destinations-toolbar">
+          <div class="destinations-toolbar-left">
+            <h2>Browse by location</h2>
+            <p>
+              Discover places first, then explore all packages available in that destination.
+            </p>
+          </div>
+
+          <div class="destinations-search">
+            <input
+              type="text"
+              id="destinationSearch"
+              placeholder="Search destination by location..."
+              aria-label="Search destination by location"
+            />
+          </div>
+        </div>
+
+        <p id="destinationsMessage">Loading destinations...</p>
+        <div id="destinationsGrid" class="destinations-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/pages/destinations.js"></script>
+</body>
+</html>

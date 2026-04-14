@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Vendor Profile | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .vendor-profile-edit-page {
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 40px 0 64px;
+    }
+
+    .vendor-profile-edit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .vendor-profile-edit-header h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      color: #0f172a;
+    }
+
+    .vendor-profile-edit-header p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .vendor-profile-edit-card {
+      max-width: 820px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+      padding: 28px;
+    }
+
+    .vendor-edit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .vendor-edit-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .vendor-edit-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .vendor-edit-field label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .vendor-edit-field input,
+    .vendor-edit-field textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #0f172a;
+      box-sizing: border-box;
+      font: inherit;
+    }
+
+    .vendor-edit-field textarea {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .vendor-edit-note {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .vendor-edit-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    #vendorProfileEditMessage {
+      margin-bottom: 16px;
+      color: #475569;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .vendor-edit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vendor-profile-edit-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body class="vendor-body">
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+        <a href="vendor-profile.html" class="active">Profile</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="vendor-profile.html" class="btn btn-outline">Back to Profile</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="vendor-profile-edit-page">
+    <div class="container">
+      <div class="vendor-profile-edit-header">
+        <div>
+          <h2>Edit Vendor Profile</h2>
+          <p>
+            Update your business details. These changes are saved only to your own vendor account.
+          </p>
+        </div>
+      </div>
+
+      <div class="vendor-profile-edit-card">
+        <p id="vendorProfileEditMessage">Loading profile details...</p>
+
+        <form id="vendorProfileEditForm">
+          <div class="vendor-edit-grid">
+            <div class="vendor-edit-field">
+              <label for="businessName">Business Name</label>
+              <input type="text" id="businessName" required />
+            </div>
+
+            <div class="vendor-edit-field">
+              <label for="ownerName">Owner Name</label>
+              <input type="text" id="ownerName" required />
+            </div>
+
+            <div class="vendor-edit-field">
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" required />
+            </div>
+
+            <div class="vendor-edit-field">
+              <label for="location">Location</label>
+              <input type="text" id="location" required />
+            </div>
+
+            <div class="vendor-edit-field full">
+              <label for="description">Business Description</label>
+              <textarea id="description" placeholder="Describe your tourism business, experiences, specialties, and what travelers can expect."></textarea>
+              <div class="vendor-edit-note">
+                This helps define your business identity consistently across the platform.
+              </div>
+            </div>
+          </div>
+
+          <div class="vendor-edit-actions">
+            <button type="submit" class="btn btn-primary" id="saveVendorProfileBtn">
+              Save Profile
+            </button>
+            <a href="vendor-profile.html" class="btn btn-outline">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/vendorProfileEdit.js"></script>
+</body>
+</html>

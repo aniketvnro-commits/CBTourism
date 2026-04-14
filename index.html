@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Based Tourism (CBT)</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">CBT</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Join as Partner</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-slider-bg">
+      <img id="heroBg" src="assets/images/kerala-bg.jpg" alt="Hero Background" />
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-left">
+        <p class="hero-tag" id="heroTag">Community Based Tourism</p>
+        <h1 id="heroTitle">KERALA</h1>
+        <p class="hero-description" id="heroDescription">
+          Explore lush landscapes, local culture, village life, and authentic travel experiences through trusted community partners.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="packages.html" class="btn btn-primary">Explore</a>
+          <a href="destinations.html" class="btn btn-secondary">View Destinations</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="preview-cards">
+          <div class="preview-card">
+            <img id="card1Img" src="assets/images/card-kerala-1.jpg" alt="Preview 1" />
+          </div>
+          <div class="preview-card">
+            <img id="card2Img" src="assets/images/card-kerala-2.jpg" alt="Preview 2" />
+          </div>
+          <div class="preview-card">
+            <img id="card3Img" src="assets/images/card-kerala-3.jpg" alt="Preview 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-controls container">
+      <button class="nav-arrow" id="prevSlide" type="button">&#10094;</button>
+
+      <div class="hero-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+
+      <button class="nav-arrow" id="nextSlide" type="button">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Featured Destinations -->
+  <section class="section featured-destinations">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Explore</p>
+        <h2>Featured Destinations</h2>
+        <p>Find community-driven tourism experiences across unique regions.</p>
+      </div>
+
+      <div class="destination-grid">
+        <div class="grid-card">
+          <img src="assets/images/destination1.jpg" alt="Kerala" />
+          <div class="grid-card-content">
+            <h3>Kerala</h3>
+            <p>Backwaters, village life, eco-tourism, and local food experiences.</p>
+          </div>
+        </div>
+
+        <div class="grid-card">
+          <img src="assets/images/destination2.jpg" alt="Uttarakhand" />
+          <div class="grid-card-content">
+            <h3>Uttarakhand</h3>
+            <p>Mountains, wellness retreats, trekking, and cultural stays.</p>
+          </div>
+        </div>
+
+        <div class="grid-card">
+          <img src="assets/images/destination3.jpg" alt="Rajasthan" />
+          <div class="grid-card-content">
+            <h3>Rajasthan</h3>
+            <p>Heritage villages, crafts, desert safaris, and local traditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Packages -->
+  <section class="section featured-packages">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Popular</p>
+        <h2>Travel Packages</h2>
+        <p>Simple, trusted, and locally curated experiences.</p>
+      </div>
+
+      <!-- ✅ FIXED: ONLY dynamic rendering -->
+      <div class="package-grid" id="homepagePackageGrid">
+        <!-- Packages will load dynamically -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Why CBT -->
+  <section class="section why-cbt">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Why Choose CBT</p>
+        <h2>Travel that supports local communities</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <h3>Trusted Local Partners</h3>
+          <p>Connect with community-based tourism businesses that offer authentic experiences.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Simple Inquiry System</h3>
+          <p>Browse packages and express interest easily without a complicated booking process.</p>
+        </div>
+
+        <div class="feature-box">
+          <h3>Meaningful Travel</h3>
+          <p>Your journey helps local entrepreneurs, families, and tourism ecosystems grow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner CTA -->
+  <section class="section partner-cta">
+    <div class="container cta-box">
+      <div>
+        <p class="section-tag">For Entrepreneurs</p>
+        <h2>Showcase your tourism services with CBT</h2>
+        <p>Join the platform to present your packages, attract travelers, and grow your business.</p>
+      </div>
+      <a href="register.html" class="btn btn-primary">Become a Partner</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-wrapper">
+      <div>
+        <h3>Community Based Tourism</h3>
+        <p>Connecting travelers with authentic community-driven tourism experiences.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>For Partners</h4>
+        <a href="register.html">Join as Partner</a>
+        <a href="login.html">Login</a>
+        <a href="admin-login.html" class="admin-link">Admin Login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/home.js"></script>
+
+</body>
+</html>

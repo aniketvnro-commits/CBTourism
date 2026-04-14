@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Booking & Inquiry | CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <style>
+    /* ─── Navbar fix: prevent position:absolute overlap from home.css ────────── */
+    .navbar {
+      position: relative;
+      background: #0f172a;
+      padding: 18px 0;
+    }
+
+    .navbar .logo {
+      color: #ffffff;
+    }
+
+    .navbar .nav-menu a {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .navbar .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: #ffffff;
+    }
+
+    .navbar .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ─── "Browse Packages" btn-outline fix on light card background ─────────── */
+    .form-actions .btn-outline {
+      border: 2px solid #0f766e;
+      color: #0f766e;
+      background: transparent;
+    }
+
+    .form-actions .btn-outline:hover {
+      background: #0f766e;
+      color: #ffffff;
+    }
+
+    .contact-page {
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .contact-hero {
+      position: relative;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.58), rgba(15, 23, 42, 0.58)),
+        url("assets/images/kerala-bg.jpg") center/cover no-repeat;
+      color: #fff;
+      padding: 88px 0 72px;
+      overflow: hidden;
+    }
+
+    .contact-hero-inner {
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .contact-title {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.03;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-subtitle {
+      margin: 18px 0 0;
+      max-width: 680px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .contact-main {
+      padding: 48px 0 72px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 1.35fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .contact-form-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+    }
+
+    .contact-card {
+      padding: 26px;
+    }
+
+    .contact-form-card {
+      padding: 28px;
+    }
+
+    .contact-card h2,
+    .contact-form-card h2 {
+      margin: 0 0 10px;
+      color: #0f172a;
+      font-size: 1.6rem;
+    }
+
+    .contact-card p,
+    .contact-form-card p {
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    .trust-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .trust-item {
+      padding: 16px 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+    }
+
+    .trust-item h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .trust-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    .contact-info-box {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      border: 1px solid #e2e8f0;
+    }
+
+    .contact-info-box h3 {
+      margin: 0 0 12px;
+      color: #0f172a;
+      font-size: 1.05rem;
+    }
+
+    .contact-info-row {
+      margin: 8px 0;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: 0.02em;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 0.98rem;
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .form-field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: #0f8b8d;
+      box-shadow: 0 0 0 3px rgba(15, 139, 141, 0.10);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      align-items: center;
+    }
+
+    .contact-note {
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .contact-message {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      display: none;
+      font-weight: 600;
+    }
+
+    .contact-message.success {
+      display: block;
+      background: #ecfdf5;
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .contact-message.error {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border-color: #fecaca;
+    }
+
+    @media (max-width: 992px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact-hero {
+        padding: 72px 0 60px;
+      }
+
+      .contact-main {
+        padding: 34px 0 56px;
+      }
+
+      .contact-form-card,
+      .contact-card {
+        padding: 20px;
+      }
+
+      .contact-form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="contact-page">
+
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">CBT</div>
+
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Join as Partner</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="contact-hero">
+    <div class="container">
+      <div class="contact-hero-inner">
+        <span class="contact-tag">Booking & Inquiry</span>
+        <h1 class="contact-title">Plan Your Journey With CBT</h1>
+        <p class="contact-subtitle">
+          Share your preferred package, destination, travel dates, and requirements.
+          Our community-based tourism network helps turn your inquiry into a curated travel experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-layout">
+
+        <div class="contact-card">
+          <h2>Why inquire with CBT?</h2>
+          <p>
+            We connect travelers with community-based tourism partners offering authentic stays,
+            curated local experiences, and meaningful travel opportunities.
+          </p>
+
+          <div class="trust-list">
+            <div class="trust-item">
+              <h3>Verified local partners</h3>
+              <p>Work with tourism businesses and community operators listed through the platform.</p>
+            </div>
+
+            <div class="trust-item">
+              <h3>Curated travel experiences</h3>
+              <p>Explore stays, cultural trails, eco-tourism, and local hospitality with intent.</p>
+            </div>
+
+            <div class="trust-item">
+              <h3>Pre-booking consultation</h3>
+              <p>Use this page to request details, custom plans, group travel support, or package availability.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-box">
+            <h3>Business Contact</h3>
+            <div class="contact-info-row"><strong>Email:</strong> support@cbtplatform.com</div>
+            <div class="contact-info-row"><strong>Phone:</strong> +91 98765 43210</div>
+            <div class="contact-info-row"><strong>Hours:</strong> Mon – Sat, 9:00 AM – 6:00 PM</div>
+            <div class="contact-info-row"><strong>Partner Support:</strong> Use Register to join as a tourism partner.</div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h2>Booking Request / Travel Inquiry</h2>
+          <p>
+            Fill in your details below. You can use this for a package inquiry, custom travel requirement,
+            or early-stage booking request.
+          </p>
+
+          <form id="contactInquiryForm">
+            <div class="contact-form-grid">
+              <div class="form-field">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" id="email" required />
+              </div>
+
+              <div class="form-field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" required />
+              </div>
+
+              <div class="form-field">
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" min="1" placeholder="e.g. 2" />
+              </div>
+
+              <div class="form-field">
+                <label for="packageName">Package / Destination</label>
+                <input type="text" id="packageName" placeholder="Selected package will auto-fill here" />
+              </div>
+
+              <div class="form-field">
+                <label for="travelDate">Preferred Travel Date</label>
+                <input type="date" id="travelDate" />
+              </div>
+
+              <div class="form-field">
+                <label for="budget">Budget Range</label>
+                <select id="budget">
+                  <option value="">Select budget</option>
+                  <option value="Below ₹5,000">Below ₹5,000</option>
+                  <option value="₹5,000 - ₹10,000">₹5,000 - ₹10,000</option>
+                  <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                  <option value="₹25,000+">₹25,000+</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="inquiryType">Inquiry Type</label>
+                <select id="inquiryType">
+                  <option value="booking_request">Booking Request</option>
+                  <option value="package_inquiry">Package Inquiry</option>
+                  <option value="custom_travel_plan">Custom Travel Plan</option>
+                  <option value="group_travel">Group Travel</option>
+                </select>
+              </div>
+
+              <div class="form-field full">
+                <label for="message">Message / Requirements</label>
+                <textarea id="message" placeholder="Tell us about your travel plans, requirements, dates, group size, or preferred destination."></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submitInquiryBtn">Send Inquiry</button>
+              <a href="packages.html" class="btn btn-outline">Browse Packages</a>
+            </div>
+
+            <p class="contact-note">
+              This is currently an inquiry-based flow. A full booking engine with confirmation and payments will be added in the next stage.
+            </p>
+
+            <div id="contactFormMessage" class="contact-message"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-wrapper">
+      <div>
+        <h3>Community Based Tourism</h3>
+        <p>Connecting travelers with authentic community-driven tourism experiences.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>For Partners</h4>
+        <a href="register.html">Join as Partner</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/contact.js"></script>
+</body>
+</html>

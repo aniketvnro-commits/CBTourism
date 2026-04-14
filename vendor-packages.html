@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Packages - CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .vendor-packages-section {
+      padding: 40px 0 60px;
+      background: #f8fafc;
+      min-height: 100vh;
+    }
+
+    .vendor-header {
+      margin-bottom: 24px;
+    }
+
+    .vendor-header h2 {
+      margin: 0;
+      color: #0f172a;
+    }
+
+    .vendor-header p {
+      margin-top: 8px;
+      color: #64748b;
+    }
+
+    .vendor-packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .vendor-package-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      transition: 0.25s;
+    }
+
+    .vendor-package-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .vendor-package-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .vendor-package-body {
+      padding: 16px;
+    }
+
+    .vendor-package-body h3 {
+      margin: 0 0 8px;
+      color: #0f172a;
+    }
+
+    .vendor-package-meta {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .vendor-package-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .empty-state {
+      background: #fff;
+      border: 1px dashed #cbd5e1;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      color: #64748b;
+    }
+  </style>
+</head>
+
+<body class="vendor-body">
+
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html" class="active">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+<section class="vendor-packages-section">
+  <div class="container">
+
+    <div class="vendor-header">
+      <h2>My Packages</h2>
+      <p>Manage, update and track your listed tourism packages.</p>
+    </div>
+
+    <p id="packageMessage"></p>
+
+    <div id="vendorPackageList" class="vendor-packages-grid"></div>
+
+  </div>
+</section>
+
+<script type="module" src="js/pages/vendorPackages.js"></script>
+</body>
+</html>

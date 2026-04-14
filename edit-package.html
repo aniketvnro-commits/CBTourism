@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Package - CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .form-section {
+      padding: 40px 0 60px;
+      background: #f8fafc;
+      min-height: calc(100vh - 90px);
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 28px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .form-card h2 {
+      margin: 0 0 16px;
+    }
+
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      box-sizing: border-box;
+    }
+
+    .form-field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .image-stack {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .image-box img {
+      width: 100%;
+      max-width: 340px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      display: none;
+    }
+
+    .image-box p {
+      margin: 0 0 8px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    #editPackageMessage {
+      margin-top: 14px;
+      color: #334155;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body class="vendor-body">
+
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html">Add Package</a>
+        <a href="vendor-packages.html" class="active">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="vendor-packages.html" class="btn btn-outline">Back to Packages</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="form-section">
+    <div class="container">
+      <div class="form-card">
+        <h2>Edit Package</h2>
+
+        <form id="editPackageForm">
+          <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" id="title" required />
+          </div>
+
+          <div class="form-field">
+            <label for="location">Location</label>
+            <input type="text" id="location" required />
+          </div>
+
+          <div class="form-field">
+            <label for="duration">Duration</label>
+            <input type="text" id="duration" required />
+          </div>
+
+          <div class="form-field">
+            <label for="price">Price</label>
+            <input type="text" id="price" required />
+          </div>
+
+          <div class="form-field">
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="image">Replace Image</label>
+            <input type="file" id="image" accept="image/*" />
+          </div>
+
+          <div class="image-stack">
+            <div class="image-box">
+              <p>Current Image</p>
+              <img id="currentPackageImage" alt="Current package image" />
+            </div>
+
+            <div class="image-box">
+              <p>New Selected Image</p>
+              <img id="newPackageImagePreview" alt="New selected package image preview" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="updatePackageBtn">Update Package</button>
+            <a href="vendor-packages.html" class="btn btn-outline">Cancel</a>
+          </div>
+
+          <p id="editPackageMessage"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/editPackage.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Package - CBT</title>
+
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/vendor.css" />
+
+  <style>
+    .form-section {
+      padding: 40px 0 60px;
+      background: #f8fafc;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 28px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .form-card h2 {
+      margin: 0 0 16px;
+    }
+
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      box-sizing: border-box;
+    }
+
+    .form-field textarea {
+      min-height: 100px;
+    }
+
+    .form-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .image-preview-wrap {
+      margin-top: 12px;
+    }
+
+    .image-preview-wrap img {
+      width: 100%;
+      max-width: 320px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid #cbd5e1;
+      display: none;
+      background: #f8fafc;
+    }
+
+    #formMessage {
+      margin-top: 14px;
+      color: #334155;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body class="vendor-body">
+
+  <header class="vendor-navbar">
+    <div class="container vendor-nav-wrapper">
+      <div class="vendor-brand">
+        <div class="vendor-brand-logo">CBT</div>
+        <div class="vendor-brand-text">
+          <h1>Community Based Tourism</h1>
+          <p>Vendor Panel</p>
+        </div>
+      </div>
+
+      <nav class="vendor-nav-links">
+        <a href="vendor-dashboard.html">Dashboard</a>
+        <a href="vendor-add-package.html" class="active">Add Package</a>
+        <a href="vendor-packages.html">My Packages</a>
+        <a href="vendor-booking-requests.html">Booking Requests</a>
+      </nav>
+
+      <div class="vendor-nav-actions">
+        <a href="index.html" class="btn btn-outline">Back to Site</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="form-section">
+    <div class="container">
+      <div class="form-card">
+
+        <h2>Add New Package</h2>
+
+        <form id="packageForm">
+          <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" id="title" required />
+          </div>
+
+          <div class="form-field">
+            <label for="location">Location</label>
+            <input type="text" id="location" required />
+          </div>
+
+          <div class="form-field">
+            <label for="duration">Duration</label>
+            <input type="text" id="duration" required />
+          </div>
+
+          <div class="form-field">
+            <label for="price">Price</label>
+            <input type="text" id="price" required />
+          </div>
+
+          <div class="form-field">
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="image">Image</label>
+            <input type="file" id="image" accept="image/*" required />
+
+            <div class="image-preview-wrap">
+              <img id="imagePreview" alt="Selected package preview" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Add Package</button>
+            <a href="vendor-packages.html" class="btn btn-outline">Cancel</a>
+          </div>
+
+          <p id="formMessage"></p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/pages/vendorAddPackage.js"></script>
+</body>
+</html>
