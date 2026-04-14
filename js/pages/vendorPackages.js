@@ -76,7 +76,6 @@ function renderPackages(packages, container) {
           <p>${description}</p>
 
           <div class="vendor-package-actions">
-            <a href="package-details.html?id=${packageId}" class="btn btn-outline">View</a>
             <a href="edit-package.html?id=${packageId}" class="btn btn-outline">Edit</a>
             <button class="btn btn-primary delete-package-btn" data-id="${escapeHtml(pkg.id)}">
               Delete
