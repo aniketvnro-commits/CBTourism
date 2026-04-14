@@ -34,83 +34,54 @@ async function loadPackageDetails() {
       return;
     }
 
+    const title = escapeHtml(pkg.title || "Untitled Experience");
+    const image = escapeHtml(pkg.image || "assets/images/kerala-bg.jpg");
+    const location = escapeHtml(pkg.location || "Location not specified");
+    const duration = escapeHtml(pkg.duration || "Duration not specified");
+    const price = escapeHtml(String(pkg.price || "N/A"));
+    const description = pkg.description || "No detailed description is available for this experience yet.";
+    const bookingUrl = `booking.html?id=${encodeURIComponent(pkg.id)}`;
+
     container.innerHTML = `
-      <div class="package-detail-layout">
-        <div class="package-intro">
-          <div>
-            <div class="package-mini-label">Community Based Tourism</div>
-            <h1 class="package-main-title">${escapeHtml(pkg.title || "Untitled Package")}</h1>
-          </div>
+      <img
+        src="${image}"
+        alt="${title}"
+        class="hero-image"
+      />
 
-          <div>
-            <p class="package-intro-text">
-              ${escapeHtml(
-                pkg.description ||
-                "Explore an authentic, curated travel experience with trusted local partners."
-              )}
-            </p>
+      <h1 class="title">${title}</h1>
+      <p class="meta">${location} • ${duration}</p>
 
-            <div class="package-intro-actions">
-              <a href="booking.html?id=${encodeURIComponent(pkg.id)}" class="btn btn-primary">
-                Book Now
-              </a>
-              <a href="packages.html" class="btn btn-outline">
-                More Packages
-              </a>
-              <button type="button" class="package-back-link" id="packageBackBtn">
-                ← Back
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="package-hero-image-section">
-          <img
-            class="package-hero-image"
-            src="${escapeHtml(pkg.image || "assets/images/kerala-bg.jpg")}"
-            alt="${escapeHtml(pkg.title || "Package")}"
-          />
-        </div>
-
-        <div class="package-info-grid">
-          <div class="package-info-card">
-            <span class="package-info-label">Location</span>
-            <span class="package-info-value">${escapeHtml(pkg.location || "Not specified")}</span>
-          </div>
-
-          <div class="package-info-card">
-            <span class="package-info-label">Duration</span>
-            <span class="package-info-value">${escapeHtml(pkg.duration || "Not specified")}</span>
-          </div>
-
-          <div class="package-info-card">
-            <span class="package-info-label">Price</span>
-            <span class="package-info-value">₹${escapeHtml(String(pkg.price || "N/A"))}</span>
-          </div>
-
-          <div class="package-info-card">
-            <span class="package-info-label">Status</span>
-            <span class="package-info-value" style="text-transform: capitalize;">
-              ${escapeHtml(pkg.status || "active")}
-            </span>
-          </div>
-        </div>
-
-        <div class="package-story-section">
-          <div class="package-story-header">
+      <div class="layout">
+        <div>
+          <div class="section">
             <h2>About this experience</h2>
-            <p>
-              This package connects travelers with authentic, community-based tourism experiences.
-              Review the package details below before continuing to the booking request step.
-            </p>
-          </div>
-
-          <div class="package-story-content">
-            ${formatParagraphs(
-              pkg.description || "No detailed description is available for this package yet."
-            )}
+            ${formatParagraphs(description)}
           </div>
         </div>
+
+        <aside class="booking-card">
+          <div class="price">₹${price}</div>
+          <div class="info-line">📍 ${location}</div>
+          <div class="info-line">⏳ ${duration}</div>
+
+          <a href="${bookingUrl}" class="book-btn-link">
+            <button type="button" class="book-btn">Book This Experience</button>
+          </a>
+
+          <a href="packages.html" class="back-btn" style="margin-top:14px; display:inline-block;">
+            More Packages
+          </a>
+
+          <button
+            type="button"
+            class="back-btn"
+            id="packageBackBtn"
+            style="margin-top:12px; background:none; border:none; padding:0; cursor:pointer;"
+          >
+            ← Back
+          </button>
+        </aside>
       </div>
     `;
 
