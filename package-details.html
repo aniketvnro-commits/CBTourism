@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experience Details | CBT</title>
 
+  <meta
+    name="description"
+    content="Explore authentic community-based tourism experiences curated by trusted local partners."
+  />
+
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/home.css" />
 
@@ -15,118 +20,223 @@
       padding: 18px 0;
     }
 
-    .package-page {
-      background: #f8fafc;
-      padding: 32px 0 64px;
+    .navbar .logo {
+      color: #ffffff;
     }
 
-    .container-custom {
+    .navbar .nav-menu a {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .navbar .btn-outline {
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #ffffff;
+    }
+
+    .navbar .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .package-page {
+      background: #f8fafc;
+      min-height: 100vh;
+      padding: 32px 0 72px;
+    }
+
+    .package-shell {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* HERO */
+    #packageDetailsContainer {
+      min-height: 240px;
+    }
+
+    .details-loading,
+    .details-error {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 24px;
+      color: #334155;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
     .hero-image {
       width: 100%;
-      height: 480px;
-      border-radius: 20px;
+      height: 500px;
+      border-radius: 22px;
       object-fit: cover;
+      display: block;
+      background: #e2e8f0;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
       margin-bottom: 24px;
     }
 
     .title {
-      font-size: 2.8rem;
-      font-weight: 700;
+      margin: 0 0 10px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
       color: #0f172a;
-      margin-bottom: 10px;
     }
 
     .meta {
+      margin: 0 0 24px;
       color: #64748b;
-      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
-    /* GRID */
     .layout {
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 32px;
+      grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+      gap: 30px;
+      align-items: start;
     }
 
-    /* EXPERIENCE */
     .section {
-      background: #fff;
-      padding: 24px;
-      border-radius: 16px;
+      background: #ffffff;
+      padding: 26px;
+      border-radius: 20px;
       border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
     }
 
     .section h2 {
-      margin-bottom: 14px;
+      margin: 0 0 14px;
       color: #0f172a;
+      font-size: 1.45rem;
     }
 
     .section p {
-      line-height: 1.8;
+      margin: 0 0 1em;
+      line-height: 1.9;
       color: #334155;
     }
 
-    /* BOOKING CARD */
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
     .booking-card {
       position: sticky;
-      top: 100px;
-      background: #fff;
+      top: 96px;
+      background: #ffffff;
       padding: 24px;
-      border-radius: 16px;
+      border-radius: 20px;
       border: 1px solid #e2e8f0;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .booking-card-title {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: #0f172a;
     }
 
     .price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .info-line {
+      margin: 10px 0;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .book-btn-link {
+      display: block;
+      text-decoration: none;
+      margin-top: 18px;
     }
 
     .book-btn {
       width: 100%;
-      padding: 14px;
+      padding: 14px 16px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background: #0f766e;
-      color: #fff;
+      color: #ffffff;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      margin-top: 16px;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .book-btn:hover {
-      background: #0d5c57;
+      background: #0c5f59;
+      transform: translateY(-1px);
     }
 
-    .book-btn-link {
-    display: block;
-    text-decoration: none;
+    .action-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
     }
 
-    .info-line {
-      margin: 8px 0;
-      color: #475569;
-    }
-
-    /* BACK */
+    .more-link,
     .back-btn {
-      display: inline-block;
-      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       color: #0f766e;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
+    .more-link:hover,
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      background: #111827;
+      color: #ffffff;
+      padding: 56px 0;
+    }
+
+    .footer-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 28px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin-bottom: 12px;
+    }
+
+    .footer p,
+    .footer a {
+      color: #d1d5db;
+      line-height: 1.7;
+    }
+
+    .footer a {
+      display: block;
+      margin-bottom: 8px;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 920px) {
       .layout {
         grid-template-columns: 1fr;
       }
@@ -135,38 +245,92 @@
         position: relative;
         top: auto;
       }
+
+      .hero-image {
+        height: 360px;
+      }
+
+      .footer-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .package-page {
+        padding: 20px 0 56px;
+      }
+
+      .package-shell {
+        padding: 0 16px;
+      }
+
+      .hero-image {
+        height: 280px;
+        border-radius: 18px;
+      }
+
+      .section,
+      .booking-card {
+        padding: 18px;
+        border-radius: 16px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<header class="navbar">
-  <div class="container nav-wrapper">
-    <div class="logo">CBT</div>
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">CBT</div>
 
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="destinations.html">Destinations</a>
-      <a href="packages.html">Packages</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
+      <nav class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </nav>
 
-<section class="package-page">
-  <div class="container-custom">
-
-    <a href="packages.html" class="back-btn">← Back to Packages</a>
-
-    <div id="packageDetailsContainer">
-      <!-- JS will inject content -->
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="register.html" class="btn btn-primary">Join as Partner</a>
+      </div>
     </div>
+  </header>
 
-  </div>
-</section>
+  <section class="package-page">
+    <div class="package-shell">
+      <div id="packageDetailsContainer">
+        <div class="details-loading">Loading experience...</div>
+      </div>
+    </div>
+  </section>
 
-<script type="module" src="js/pages/packageDetails.js"></script>
+  <footer class="footer">
+    <div class="container footer-wrapper">
+      <div>
+        <h3>Community Based Tourism</h3>
+        <p>
+          Connecting travelers with authentic community-driven tourism experiences
+          created by local partners.
+        </p>
+      </div>
 
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="packages.html">Packages</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div>
+        <h4>For Partners</h4>
+        <a href="register.html">Join as Partner</a>
+        <a href="login.html">Login</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/pages/packageDetails.js"></script>
 </body>
 </html>
