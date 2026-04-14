@@ -39,7 +39,9 @@ async function loadPackageDetails() {
     const location = escapeHtml(pkg.location || "Location not specified");
     const duration = escapeHtml(pkg.duration || "Duration not specified");
     const price = escapeHtml(String(pkg.price || "N/A"));
-    const description = pkg.description || "No detailed description is available for this experience yet.";
+    const description =
+      pkg.description ||
+      "No detailed description is available for this experience yet.";
     const bookingUrl = `booking.html?id=${encodeURIComponent(pkg.id)}`;
 
     container.innerHTML = `
@@ -61,6 +63,7 @@ async function loadPackageDetails() {
         </div>
 
         <aside class="booking-card">
+          <h3 class="booking-card-title">Book this experience</h3>
           <div class="price">₹${price}</div>
           <div class="info-line">📍 ${location}</div>
           <div class="info-line">⏳ ${duration}</div>
@@ -69,18 +72,10 @@ async function loadPackageDetails() {
             <button type="button" class="book-btn">Book This Experience</button>
           </a>
 
-          <a href="packages.html" class="back-btn" style="margin-top:14px; display:inline-block;">
-            More Packages
-          </a>
-
-          <button
-            type="button"
-            class="back-btn"
-            id="packageBackBtn"
-            style="margin-top:12px; background:none; border:none; padding:0; cursor:pointer;"
-          >
-            ← Back
-          </button>
+          <div class="action-links">
+            <a href="packages.html" class="more-link">More Packages</a>
+            <button type="button" class="back-btn" id="packageBackBtn">← Back</button>
+          </div>
         </aside>
       </div>
     `;
